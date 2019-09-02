@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html>
+<!--
+* File: index.html
+* Author: Muhammad Doris
+* Created: 08.31.2019
+* License: Public GNU
+* Description: HTML, CSS, JavaScript for call-back pop-up form widget
+-->
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+body {font-family: Arial, Helvetica, sans-serif;}
+* {box-sizing: border-box;}
+/* Change default h4 and h6 font color to white */
+h4, h6 {
+        color: white;
+       }
+
+/* Set style for input type "text" and select */
+input[type=text], select {
+  width: 100%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  display: inline-block;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+/* Set style for input type "email" */
+input[type=email] {
+  width: 100%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  display: inline-block;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+
+/* Set style and position of x close button in popup form */
+.close {
+  position: absolute;
+  right: 1px;
+  top: 1px;
+  width: 20px;
+  height: 20px;
+  opacity: 0.75;
+}
+.close:hover {
+  opacity: 1;
+}
+
+/* Button used to open the call-back form - fixed at the bottom of the page */
+.open-button {
+  background-color:#295786;
+  color: white;
+  padding: 16px 20px;
+  border: none;
+  cursor: pointer;
+  opacity: 0.8;
+  position: fixed;
+  bottom: 23px;
+  right: 28px;
+  /* width: 280px;*/
+  width: 280px;
+  font-size: 20px;
+  border-radius: 24px;
+  box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
+}
+
+/* The popup form - hidden by default */
+.form-popup {
+  display: none;
+  position: fixed;
+  bottom: 0;
+  right: 15px;
+  border: 3px solid #f1f1f1;
+  z-index: 9;
+  text-decoration-color: #f1f1f1
+}
+
+/* Add styles to the form container */
+.form-container {
+  max-width: 300px;
+  padding: 10px;
+  background-color: #295786;
+}
+
+/* Full-width input fields */
+.form-container input[type=text], .form-container input[type=email] {
+  width: 100%;
+  padding: 15px;
+  margin: 5px 0 22px 0;
+  border: none;
+  background: #f1f1f1;
+}
+
+/* When the inputs get focus, do something */
+.form-container input[type=text]:focus, .form-container input[type=email]{
+  background-color: #ddd;
+  outline: none;
+}
+
+/* Set a style for the call now button */
+.form-container .btn {
+  background-color: rgb(2, 219, 248);
+  color: white;
+  padding: 16px 20px;
+  border: none;
+  cursor: pointer;
+  margin-bottom:10px;
+  opacity: 0.8;
+  font-size: 20px;
+  width: 100%;
+}
+
+/* Add a red background color to the cancel button */
+.form-container .cancel {
+  background-color: red;
+}
+
+/* Add some hover effects to buttons */
+.form-container .btn:hover, .open-button:hover {
+  opacity: 1;
+}
+</style>
+</head>
+<body>
+<!-- Set long description in home page so users can see pop-up still stay there while page is scroll-down-->
+<h2>Popup Call-back Form</h2>
+<br></br>
+<h3>Click on the button at the bottom of this page to open the call-back form.</h3>
+<h3>Note that the button and the form is fixed - they will always be positioned to the bottom of the browser window.</h3>
+<h3>You may scroll-down this page to check below Popup Call-back form widget stay there on a page when scrolled</h3>
+<br></br>
+<h5>File: index.html</h5>
+<h5>Author: Muhammad Doris</h5> 
+<h5>Created: 08.31.2019</h5>
+<h5>License: Public GNU</h5>
+<h5>Description: HTML, CSS, JavaScript for popup call-back form widget</h5> 
+<br></br>
+<h5>This is Tech Assessment for applying PHP Programmer Position in Lucep Pte Ltd</h5>
+<h5>I hope my assessment is suitable with the requirement</p> 
+<h5>I am available to have small interview with you</h5>
+<h5>You may contact me on my mobile phone +6285363383536 or whatsapp +6281991091194</h5>
+<h5>Please kindly check my online CV on below link:</h5>
+<h5> <a href="https://cvonline.me/@mdoris"> https://cvonline.me/@mdoris </a></h5>
+<br></br>
+<h5>Best Regards,</h5>
+<h2>Muhammad Doris</h2>
+<!-- Create minimized version of widget to shown up the call-back form -->
+<button class="open-button" onclick="openForm()">Click here to get call-back</button>
+
+<div class="form-popup" id="myForm">
+  <!-- Set another PHP pages to proceed visitor form by Post Ajax request -->
+  <form action="action_page.php" class="form-container" method="post">
+
+    <!-- Create icon X for closing/minimize form -->
+    <button type="button" class="close" aria-label="Close" onclick="closeForm()">
+        <span aria-hidden="true">&times;</span>
+    </button>
+    <h4>DO YOU WANT A CALL-BACK?</h4>
+    <h6>Please give us your details and we will get back to you.</h6>
+    <!-- Creating text field and option field to collect visitor data -->
+    <input type="text" placeholder="Your Name" name="your_name" required>
+    <select id="cback" name="call-back" required>
+        <option value="content">I'm Interested in Content</option>
+        <option value="design">I'm Interested in Design</option>       
+    </select>
+    <input type="email" placeholder="Email Address" name="email_address" required>
+    <button type="submit" class="btn">Call Now</button>    
+    </form>
+</div>
+<script>
+/* Set function to open/maximize form/widget */
+function openForm() {
+  document.getElementById("myForm").style.display = "block";
+}
+
+/* Set function to close/minimize form/widget */
+function closeForm() {
+  document.getElementById("myForm").style.display = "none";
+}
+</script>
+
+</body>
+</html>
